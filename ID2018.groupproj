@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F98A11DE-B3B1-482A-AC83-3D42B8CED16D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NGINX\001_datasnap_color\A_EC2018_DataSnapColor.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="REDIS\A_basico\basico.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="REDIS\D_cacheamento\cacheamento.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="A_EC2018_DataSnapColor">
+        <MSBuild Projects="NGINX\001_datasnap_color\A_EC2018_DataSnapColor.dproj"/>
+    </Target>
+    <Target Name="A_EC2018_DataSnapColor:Clean">
+        <MSBuild Projects="NGINX\001_datasnap_color\A_EC2018_DataSnapColor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="A_EC2018_DataSnapColor:Make">
+        <MSBuild Projects="NGINX\001_datasnap_color\A_EC2018_DataSnapColor.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="basico">
+        <MSBuild Projects="REDIS\A_basico\basico.dproj"/>
+    </Target>
+    <Target Name="basico:Clean">
+        <MSBuild Projects="REDIS\A_basico\basico.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="basico:Make">
+        <MSBuild Projects="REDIS\A_basico\basico.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="cacheamento">
+        <MSBuild Projects="REDIS\D_cacheamento\cacheamento.dproj"/>
+    </Target>
+    <Target Name="cacheamento:Clean">
+        <MSBuild Projects="REDIS\D_cacheamento\cacheamento.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cacheamento:Make">
+        <MSBuild Projects="REDIS\D_cacheamento\cacheamento.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="A_EC2018_DataSnapColor;basico;cacheamento"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="A_EC2018_DataSnapColor:Clean;basico:Clean;cacheamento:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="A_EC2018_DataSnapColor:Make;basico:Make;cacheamento:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
